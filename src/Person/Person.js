@@ -13,8 +13,7 @@ const StyleDiv = styled.div`
   @media (min-width: 500px){
       width: 450px;
   }
-`
-
+`;
 
 
 const person = (props) => {
