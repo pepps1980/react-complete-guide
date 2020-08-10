@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import styled from 'styled-components';
-import "./App.css";
+import  "./App.css";
+import mStyle from "./App.module.css";
 import Person from "./Person/Person";
 
 const StyleButton = styled.button`
@@ -104,7 +105,7 @@ class App extends Component {
 
     return (
       <div className="App">
-        <h1>Hi, I'm a React App</h1>
+        <h1 className={mStyle.red}>Hi, I'm a React App</h1>
         <p className={classes.join(' ')}>This is really working!</p>
         <StyleButton alt={this.state.showPersons} onClick={this.togglePersonsHandle}>
           Toggle Persons
