@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import classes from "./App.module.css";
 import Persons from "../components/Persons/Persons";
 import Cockpit from "../components/Cockpit/Cockpit";
-import WithClass from '../hoc/WithClass';
+import withClass from '../hoc/withClass';
+import Auxilliary from "../hoc/Auxilliary";
 
 class App extends Component {
   constructor(props) {
@@ -83,7 +84,7 @@ class App extends Component {
       );
     }
     return (
-      <WithClass classes={classes.App}>
+      <Auxilliary>
         <button
           onClick={() => {
             this.setState({ showCockpit: false });
@@ -100,7 +101,7 @@ class App extends Component {
           />
         ) : null}
         {persons}
-      </WithClass>
+      </Auxilliary>
     );
   }
   // return React.createElement(
@@ -110,4 +111,4 @@ class App extends Component {
   // );
 }
 
-export default App;
+export default withClass(App, classes.App);
