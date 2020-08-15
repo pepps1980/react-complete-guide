@@ -2,6 +2,8 @@ import React, { PureComponent } from "react";
 import Person from "./Person/Person";
 import ErrorBoundary from "../ErrorBoundary/ErrorBoundary";
 
+
+
 class Persons extends PureComponent {
   // static getDerivedStatedFromProps(props, state){
   //   console.log('[Persons.js] getDerivedStateFromProps');

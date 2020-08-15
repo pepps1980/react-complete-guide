@@ -4,6 +4,7 @@ import Persons from "../components/Persons/Persons";
 import Cockpit from "../components/Cockpit/Cockpit";
 import withClass from "../hoc/withClass";
 import Auxilliary from "../hoc/Auxilliary";
+import AuthContext from "../context/auth-context";
 
 class App extends Component {
   constructor(props) {
@@ -20,7 +21,7 @@ class App extends Component {
     showPersons: false,
     showCockpit: true,
     changeCounter: 0,
-    authenticated: false
+    authenticated: false,
   };
 
   static getDerivedStateFromProps(props, state) {
@@ -63,9 +64,10 @@ class App extends Component {
     persons[personIndex] = person;
 
     this.setState((prevState, props) => {
-      return { 
-        persons: persons, 
-        changeCounter: prevState.changeCounter + 1 };
+      return {
+        persons: persons,
+        changeCounter: prevState.changeCounter + 1,
+      };
     });
   };
 
@@ -75,7 +77,7 @@ class App extends Component {
   };
 
   loginHandler = () => {
-    this.setState({authenticated: true});
+    this.setState({ authenticated: true });
   };
 
   render() {
@@ -103,16 +105,20 @@ class App extends Component {
         >
           remove Cockpit
         </button>
-        {this.state.showCockpit ? (
-          <Cockpit
-            title={this.props.appTitle}
-            showPersons={this.state.showPersons}
-            personslength={this.state.persons.length}
-            clicked={this.togglePersonsHandle}
-            login={this.loginHandler}
-          />
-        ) : null}
-        {persons}
+        <AuthContext.Provider value={{ 
+          authenticated: this.state.authenticated,
+          login: this.loginHandler
+         }}>
+          {this.state.showCockpit ? (
+            <Cockpit
+              title={this.props.appTitle}
+              showPersons={this.state.showPersons}
+              personslength={this.state.persons.length}
+              clicked={this.togglePersonsHandle}
+            />
+          ) : null}
+          {persons}
+        </AuthContext.Provider>
       </Auxilliary>
     );
   }
