@@ -1,7 +1,7 @@
 import React from "react";
 
-import classes from './BuildControls.module.css';
-import BuildContol from './BuildControl/BuildControl';
+import classes from "./BuildControls.module.css";
+import BuildContol from "./BuildControl/BuildControl";
 
 const controls = [
   { label: "Salad", type: "salad" },
@@ -11,16 +11,18 @@ const controls = [
 ];
 
 const buildControls = (props) => (
-<div className={classes.BuildControls}>
-    {controls.map(ctrl => (
-        <BuildContol 
-          key={ctrl.label} 
-          label={ctrl.label}
-          added={() => props.ingredientAdded(ctrl.type)}
-          removed={() => props.ingredientRemoved(ctrl.type)} 
-          disabled={props.disabled[ctrl.type]}/>
+  <div className={classes.BuildControls}>
+    <p>Current Price: <strong>{props.price.toFixed(2)}</strong></p>
+    {controls.map((ctrl) => (
+      <BuildContol
+        key={ctrl.label}
+        label={ctrl.label}
+        added={() => props.ingredientAdded(ctrl.type)}
+        removed={() => props.ingredientRemoved(ctrl.type)}
+        disabled={props.disabled[ctrl.type]}
+      />
     ))}
-</div>
+  </div>
 );
 
 export default buildControls;
